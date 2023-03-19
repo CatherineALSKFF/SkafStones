@@ -1,0 +1,46 @@
+<%layout('./layouts/boilerplate')%>
+
+
+<% for (let contact of contacts){ %>
+    <div class="card mb-3" style="width: 18rem;">
+        <div class="card-header">
+            <%=contact.name%>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%=contact.email%></h5>
+          <p class="card-text"><%=contact.message%></p>
+          
+        </div>
+      </div>
+     
+    <%}%>
+
+
+
+<form action="/" method="post">
+
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="prod[title]" placeholder="title">
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" class="form-control" id="description" name="prod[description]" placeholder="Description">
+    </div>
+
+    <div class="mb-3">
+        <label for="image" class="form-label">Image</label>
+        <input type="text" class="form-control" id="image" name="prod[image]" placeholder="image">
+    </div>
+<button type="submit" class="btn btn-dark">submit</button>
+
+
+</form>
+
+
+
+
+
+
