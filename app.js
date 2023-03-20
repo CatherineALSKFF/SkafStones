@@ -25,7 +25,8 @@ mongoose.set('strictQuery', false);
 app.use(mongoSanitize({
     replaceWith: '_',
 }));
-const dbUrl= process.env.DB_URL || 'mongodb://127.0.0.1:27017/skaf-stones';
+const dbUrl= process.env.DB_URL
+//  || 'mongodb://127.0.0.1:27017/skaf-stones';
 
 mongoose.connect(dbUrl);
 
