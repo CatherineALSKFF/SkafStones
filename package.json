@@ -18,7 +18,7 @@
     "express-mongo-sanitize": "^2.2.0",
     "express-session": "^1.17.3",
     "helmet": "^6.0.1",
-    "mongodb": "^5.1.0",
+    "mongodb": "^5.0.0",
     "mongoose": "^6.9.0",
     "path": "^0.12.7"
   }
