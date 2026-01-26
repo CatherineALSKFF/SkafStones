@@ -47,32 +47,28 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 
-  const scriptSrcUrls = [
-    "https://stackpath.bootstrapcdn.com/",
+const scriptSrcUrls = [
     "https://kit.fontawesome.com/",
-    "https://cdnjs.cloudflare.com/",
-    "https://cdn.jsdelivr.net",
-    "https://www.w3schools.com/w3css/4/w3.css" ,
-    "https://www.google.com",
-    "https://www.instagram.com/"
-
+    "https://ka-f.fontawesome.com/",
+    "https://www.instagram.com/",
+    "https://www.google.com"
 ];
-const styleSrcUrls = [ 
-    "https://kit-free.fontawesome.com/" ,
-    "https://stackpath.bootstrapcdn.com/" ,
-    "https://fonts.googleapis.com/" ,
-    "https://use.fontawesome.com/" ,
-    "https://www.w3schools.com/w3css/4/w3.css" ,
-    "https://www.google.com",
-    "https://cdn.jsdelivr.net" ,
-    "https://www.instagram.com/"
 
+const styleSrcUrls = [
+    "https://fonts.googleapis.com/",
+    "https://ka-f.fontawesome.com/",
+    "https://www.instagram.com/"
 ];
+
 const connectSrcUrls = [
-    "https://www.instagram.com/"
-
+    "https://www.instagram.com/",
+    "https://ka-f.fontawesome.com/"
 ];
-const fontSrcUrls = [  "https://fonts.gstatic.com/"];
+
+const fontSrcUrls = [
+    "https://fonts.gstatic.com/",
+    "https://ka-f.fontawesome.com/"
+];
 app.use(
     helmet.contentSecurityPolicy({
         directives: {
