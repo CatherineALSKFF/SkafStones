@@ -6,7 +6,7 @@ const Contact = require('./models/contacts');
 require('dotenv').config();
 const session = require('express-session');
 const helmet = require('helmet');
-const MongoStore = require('connect-mongo').default;
+const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
 
 const app = express();
