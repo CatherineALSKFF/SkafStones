@@ -6,7 +6,6 @@ const Contact = require('./models/contacts');
 require('dotenv').config();
 const session = require('express-session');
 const helmet = require('helmet');
-const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -16,35 +15,44 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
-const dbUrl= process.env.DB_URL
-//  || 'mongodb://127.0.0.1:27017/skaf-stones';
+const dbUrl = process.env.DB_URL;
 
-mongoose.connect(dbUrl);
+if (dbUrl) {
+    mongoose.connect(dbUrl);
 
-const store= MongoStore.create({
-    mongoUrl: dbUrl,
-    touchAfter: 24 * 3600 
-})
+    const MongoStore = require('connect-mongo');
+    const store = MongoStore.create({
+        mongoUrl: dbUrl,
+        touchAfter: 24 * 3600
+    });
 
-store.on('error', (e)=>{
-   console.log('session store error', e)
-})
+    store.on('error', (e) => {
+       console.log('session store error', e)
+    });
 
-const secret= process.env.SECRET || 'donttellsecret'
+    const secret = process.env.SECRET || 'donttellsecret';
 
-const sessionConfig = {
- store: store,
-   secret,
-   resave: false,
-   saveUninitialized: false,
-   cookie: {
-       httpOnly: true,
-       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-       maxAge: 1000 * 60 * 60 * 24 * 7
-   }
+    const sessionConfig = {
+        store: store,
+        secret,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            httpOnly: true,
+            expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+            maxAge: 1000 * 60 * 60 * 24 * 7
+        }
+    };
+
+    app.use(session(sessionConfig));
+} else {
+    const secret = process.env.SECRET || 'donttellsecret';
+    app.use(session({
+        secret,
+        resave: false,
+        saveUninitialized: false
+    }));
 }
-
-app.use(session(sessionConfig));
 
 
 const scriptSrcUrls = [
